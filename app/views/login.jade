@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Auth with Passport
+        // CSS content
+        link(rel='stylesheet', href='/css/basic.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        // JS content is right before closing body tag
+    body
+        // All page content is wrapped in here
+        div#wrap
+            // Header
+            div.navbar.navbar-default.navbar-fixed-top
+                div.container
+                    div.navbar-header
+                        button(
+                          class='navbar-toggle',
+                          type='button',
+                          data-toggle='collapse',
+                          data-target='.navbar-collapse')
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a(class='navbar-brand', href='/') Node Auth
+                    div.collapse.navbar-collapse
+                        ul.nav.navbar-nav
+                            li
+                                a(href='/') Home
+                            li
+                              a(href='/signup') Signup
+
+            // Main content
+            div.container
+                div.page-header
+                    h1.span.fa.fa-sign-in Login
+
+                    if message.length > 0
+                      div.alert.alert-danger #{message}
+
+                    form(action="/login" method="post")
+                      div.form-group
+                        label Email
+                        input(type="text" class="form-control" name="email")
+
+                      div.form-group
+                        label Password
+                        input(type="password" class="form-control" name="password")
+
+                      button(type="submit" class="btn btn-warning btn-lg") Login
+
+                    hr
+
+                    p Need an account? <a href="/signup">Signup</a>
+                    p Or go <a href="/">home.</a>
+
+        // Footer
+        div#footer
+            div.container
+                p.text-muted.credit Page made by me,
+                  <a href="http://twitter.com/authorname/">@authorname</a>.
+
+        // Bootstrap core JavaScript, placed here for faster page load
+        script(type='text/javascript' src='/lib/jquery/dist/jquery.js')
+        script(type='text/javascript' src='/lib/bootstrap/dist/js/bootstrap.js')

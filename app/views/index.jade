@@ -1,0 +1,68 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Auth with Passport
+        // CSS content
+        link(rel='stylesheet', href='/css/basic.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        // JS content is right before closing body tag
+    body
+        // All page content is wrapped in here
+        div#wrap
+            // Header
+            div.navbar.navbar-default.navbar-fixed-top
+                div.container
+                    div.navbar-header
+                        button(
+                          class='navbar-toggle',
+                          type='button',
+                          data-toggle='collapse',
+                          data-target='.navbar-collapse')
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a(class='navbar-brand', href='/') Node Auth
+                    div.collapse.navbar-collapse
+                        ul.nav.navbar-nav
+                            li.active
+                                a(href='/') Home
+                            li
+                              if user
+                                a(href='/profile') My Profile
+                            li
+                              if !user
+                                a(href='/login') Login
+                            li
+                              if !user
+                                a(href='/signup') Signup
+                            li
+                              if user
+                                a(href='/logout') Logout
+                            li
+                              if user
+                                a(href='/profile') You are logged in with #{user.local.email}.
+
+            // Main content
+            div.container
+                div.page-header
+                    h1.fa.fa-lock Node Authentication.
+
+                    p Login or Register with:
+                    a(href="/login" class="btn btn-default")
+                      span.fa.fa-user Local Login
+
+                    a(href="/signup" class="btn btn-default")
+                      span.fa.fa-user Local Signup
+
+        // Footer
+        div#footer
+            div.container
+                p.text-muted.credit Page made by me,
+                  <a href="http://twitter.com/authorname/">@authorname</a>.
+
+        // Bootstrap core JavaScript, placed here for faster page load
+        script(type='text/javascript' src='/lib/jquery/dist/jquery.js')
+        script(type='text/javascript' src='/lib/bootstrap/dist/js/bootstrap.js')
