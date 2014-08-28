@@ -12,7 +12,7 @@ var Example = React.createClass({
   },
   render : function() {
     return(
-      <div>
+      <div className="exampleContainer">
         <ul>
           <li>{this.props.name}</li>
           <li>{this.props.mail}</li>

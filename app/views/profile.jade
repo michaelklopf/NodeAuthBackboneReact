@@ -10,41 +10,8 @@ html(lang="en")
         link(rel='stylesheet', href='/css/font-awesome.min.css')
         // JS content is right before closing body tag
     body
-        // All page content is wrapped in here
-        div#wrap
-            // Header
-            div.navbar.navbar-default.navbar-fixed-top
-                div.container
-                    div.navbar-header
-                        button(
-                          class='navbar-toggle',
-                          type='button',
-                          data-toggle='collapse',
-                          data-target='.navbar-collapse')
-                            span.icon-bar
-                            span.icon-bar
-                            span.icon-bar
-                        a(class='navbar-brand', href='/') Node Auth
-                    div.collapse.navbar-collapse
-                        ul.nav.navbar-nav
-                            li
-                                a(href='/') Home
-                            li.active
-                                a(href='/profile') My Profile
-                            li
-                              a(href='/logout') Logout
-                            li
-                              if user
-                                a(href='/profile') You are logged in with #{user.local.email}.
-
-            // React here please
-            div.container#container
-
-        // Footer
-        div#footer
-            div.container
-                p.text-muted.credit Page made by me,
-                  <a href="http://twitter.com/authorname/">@authorname</a>.
+        // React here please
+        div#container
 
         // Bootstrap core JavaScript, placed here for faster page load
         script(type='text/javascript' src='/lib/jquery/dist/jquery.js')
@@ -56,5 +23,7 @@ html(lang="en")
 
         script(type='text/javascript' src='/js/models/example.js')
         script(type='text/javascript' src='/js/collections/examples.js')
+        script(type='text/jsx' src='/js/views/header.js')
+        script(type='text/jsx' src='/js/views/footer.js')
         script(type='text/jsx' src='/js/views/example_component.js')
         script(type='text/jsx' src='/js/react_profile.js')
