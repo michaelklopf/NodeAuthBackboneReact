@@ -17,7 +17,7 @@ app.IndexComponent = React.createClass({
     return(
       <div id="content">
         <div id="wrap">
-          <HeaderComponent />
+          <HeaderComponent router={this.props.router}/>
           <div className="container">
             <div className="page-header">
               <h1 className="span fa fa-sign-in">Login</h1>

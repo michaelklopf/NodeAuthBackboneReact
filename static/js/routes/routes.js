@@ -8,25 +8,25 @@ var app = app || {};
 app.RouteMixin = {
   navigateToSignUp : function() {
     this.props.router.navigate(
-      "signup",
+      "#/signup",
       {trigger: true}
     );
   },
   navigateToLogin : function() {
     this.props.router.navigate(
-      "",
+      "#/",
       {trigger: true}
     );
   },
   navigateToHome : function() {
     this.props.router.navigate(
-      "",
+      "#/",
       {trigger: true}
     );
   },
   navigateToProfile : function() {
     this.props.router.navigate(
-      "profile",
+      "#/profile",
       {trigger: true}
     );
   }

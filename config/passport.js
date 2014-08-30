@@ -1,5 +1,9 @@
 // config/passport.js
 
+// http://stackoverflow.com/questions/9119648/securing-my-node-js-apps-rest-api
+// http://stackoverflow.com/questions/15496915/how-to-implement-a-secure-rest-api-with-node-js?rq=1
+// http://stackoverflow.com/questions/319530/restful-authentication
+
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../app/models/user');
@@ -27,7 +31,7 @@ module.exports = function(passport) {
           return done(err);
 
         if (user) {
-          return done(null, false, req.send({'error' : 'That email is already taken.'}));
+          return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
         } else {
           var newUser = new User();
 

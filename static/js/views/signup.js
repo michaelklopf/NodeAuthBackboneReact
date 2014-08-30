@@ -14,7 +14,6 @@ app.SignupComponent = React.createClass({
     var email = this.refs.email.getDOMNode().value.trim();
     var password = this.refs.password.getDOMNode().value.trim();
     var auth = {email : email, password : password};
-
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -33,7 +32,7 @@ app.SignupComponent = React.createClass({
     return(
       <div id="content">
         <div id="wrap">
-          <HeaderComponent />
+          <HeaderComponent router={this.props.router} />
           <div className="container">
               <div className="page-header">
                 <div className="page-header">
