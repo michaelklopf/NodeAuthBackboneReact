@@ -7,6 +7,7 @@
 var app = app || {};
 
 app.HeaderComponent = React.createClass({
+  mixins: [app.RouteMixin],
   render : function() {
     return(
       <div className="navbar navbar-default navbar-fixed-top">
@@ -17,13 +18,13 @@ app.HeaderComponent = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a href="/" className="navbar-brand">Node Auth</a>
+            <a onClick={this.navigateToHome} className="navbar-brand">Node Auth</a>
           </div>
           <div className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
-              <li><a href="/">Home</a></li>
-              <li className="active"><a href="/profile">My Profile</a></li>
-              <li><a href="/logout">Logout</a></li>
+              <li><a onClick={this.navigateToHome}>Home</a></li>
+              <li><a onClick={this.navigateToLogin}>Login</a></li>
+              <li><a onClick={this.navigateToSignUp}>SignUp</a></li>
             </ul>
           </div>
         </div>
@@ -31,3 +32,6 @@ app.HeaderComponent = React.createClass({
     );
   }
 });
+
+//<li><a onClick={this.navigateToProfile}>My Profile</a></li>
+//<li><a onClick={this.navigateToLogout}>Logout</a></li>

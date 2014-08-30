@@ -5,34 +5,45 @@
 
 var app = app || {};
 
-var ExampleComponent = app.ExampleComponent;
-var FooterComponent = app.FooterComponent;
-var HeaderComponent = app.HeaderComponent;
+var PageComponent = app.PageComponent;
+var IndexComponent = app.IndexComponent;
+var SignupComponent = app.SignupComponent;
 
-var PageComponent = React.createClass({
-  render : function() {
-    return (
-      <div id="content">
-        <div id="wrap">
-          <HeaderComponent />
-          <div className="container">
-            <div className="page-header">
-              <h1>Welcome to the template.</h1>
-              <p className="lead">This is a lead:</p>
-              <ExampleComponent data={collection} />
-            </div>
-          </div>
-        </div>
-        <FooterComponent />
-      </div>
+var Router = Backbone.Router.extend({
+  routes : {
+    "" : "index",
+    "profile" : "profile",
+    "signup" : "signup",
+    "logout" : "logout"
+  },
+  index : function() {
+    React.renderComponent(
+      <IndexComponent router={router} url="/login" />,
+      document.querySelector("#container")
     );
+  },
+  profile : function() {
+    React.renderComponent(
+      <PageComponent router={router} url="/"/>,
+      document.querySelector("#container")
+    );
+  },
+  signup : function() {
+    React.renderComponent(
+      <SignupComponent router={router} url="/signup"/>,
+      document.querySelector("#container")
+    );
+  },
+  logout : function() {
+    // TODO
   }
 });
 
-var collection = new app.Examples();
-collection.fetch();
+var router = new Router();
 
 React.renderComponent(
-  <PageComponent />,
+  <IndexComponent router={router} url="/login" />,
   document.querySelector("#container")
 );
+
+Backbone.history.start();

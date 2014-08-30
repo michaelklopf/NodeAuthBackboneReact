@@ -43,7 +43,7 @@ var ExampleForm = React.createClass({
         <input type="text" className="form-control" placeholder="Enter Name" ref="name">
         </input>
         <label htmlFor="example-input-mail">
-          Example name input
+          Example mail input
         </label>
         <input type="text" className="form-control" placeholder="Enter Mail" ref="mail">
         </input>

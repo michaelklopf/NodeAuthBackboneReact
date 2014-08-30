@@ -8,6 +8,6 @@ module.exports = function(app, passport) {
     // application routes
     app.get('/', function(req, res) {
       res.contentType('text/html');
-      res.render('index', {user : req.user});
+      res.render('app');
     });
 };
