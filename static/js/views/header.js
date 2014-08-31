@@ -8,6 +8,19 @@ var app = app || {};
 
 app.HeaderComponent = React.createClass({
   mixins: [app.RouteMixin],
+  handleLogout : function() {
+    $.ajax({
+      url: '/logout',
+      type: 'GET',
+      success: function(data) {
+        console.log(data.message);
+        this.navigateToHome();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
   render : function() {
     return(
       <div className="navbar navbar-default navbar-fixed-top">
@@ -25,6 +38,8 @@ app.HeaderComponent = React.createClass({
               <li><a onClick={this.navigateToHome}>Home</a></li>
               <li><a onClick={this.navigateToLogin}>Login</a></li>
               <li><a onClick={this.navigateToSignUp}>SignUp</a></li>
+              <li><a onClick={this.navigateToProfile}>My Profile</a></li>
+              <li><a onClick={this.handleLogout}>Logout</a></li>
             </ul>
           </div>
         </div>
@@ -32,6 +47,3 @@ app.HeaderComponent = React.createClass({
     );
   }
 });
-
-//<li><a onClick={this.navigateToProfile}>My Profile</a></li>
-//<li><a onClick={this.navigateToLogout}>Logout</a></li>

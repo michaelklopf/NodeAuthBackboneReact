@@ -13,8 +13,7 @@ var Router = Backbone.Router.extend({
   routes : {
     "" : "index",
     "profile" : "profile",
-    "signup" : "signup",
-    "logout" : "logout"
+    "signup" : "signup"
   },
   index : function() {
     React.renderComponent(
@@ -33,9 +32,6 @@ var Router = Backbone.Router.extend({
       <SignupComponent router={router} url="/signup"/>,
       document.querySelector("#container")
     );
-  },
-  logout : function() {
-    // TODO
   }
 });
 

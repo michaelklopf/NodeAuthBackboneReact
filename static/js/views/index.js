@@ -10,8 +10,40 @@ var HeaderComponent = app.HeaderComponent;
 
 app.IndexComponent = React.createClass({
   mixins: [app.RouteMixin],
+  proceedWithLogin : function() {
+    this.navigateToProfile();
+  },
+  stopLogin : function() {
+    this.refs.email.getDOMNode().value = '';
+    this.refs.password.getDOMNode().value = '';
+    // TODO Show flash message
+  },
   handleLogin : function() {
-
+    var email = this.refs.email.getDOMNode().value.trim();
+    var password = this.refs.password.getDOMNode().value.trim();
+    var auth = {email : email, password : password};
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: auth,
+      success: function(data) {
+        if (data.status === true) {
+          this.proceedWithLogin();
+        } else {
+          if (data.status === false) {
+            console.log(data.message);
+            this.stopLogin();
+          } else {
+            console.log("An error occured");
+          }
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+    return false;
   },
   render : function() {
     return(
@@ -33,7 +65,7 @@ app.IndexComponent = React.createClass({
                 <button type="submit" className="btn btn-warning btn-lg" onClick={this.handleLogin}>Login</button>
               </form>
               <hr />
-              <p>Need an account? <a onClick={this.navigateToSignUp}>Signup</a></p>
+              <p>Need an account? <a onClick={this.navigateToSignUp}>SignUp</a></p>
               <p>Or go <a onClick={this.navigateToHome}>home.</a></p>
             </div>
           </div>

@@ -10,6 +10,14 @@ var HeaderComponent = app.HeaderComponent;
 
 app.SignupComponent = React.createClass({
   mixins: [app.RouteMixin],
+  proceedWithSignUp : function() {
+    this.navigateToProfile();
+  },
+  stopSignUp : function() {
+    this.refs.email.getDOMNode().value = '';
+    this.refs.password.getDOMNode().value = '';
+    // TODO Show flash message
+  },
   handleSubmit : function() {
     var email = this.refs.email.getDOMNode().value.trim();
     var password = this.refs.password.getDOMNode().value.trim();
@@ -20,13 +28,22 @@ app.SignupComponent = React.createClass({
       type: 'POST',
       data: auth,
       success: function(data) {
-        console.log("you are signed up");
-        console.log(data);
+        if (data.status === true) {
+          this.proceedWithSignUp();
+        } else {
+          if (data.status === false) {
+            console.log(data.message);
+            this.stopSignUp();
+          } else {
+            console.log("An error occured");
+          }
+        }
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
+    return false;
   },
   render : function() {
     return(
@@ -46,7 +63,7 @@ app.SignupComponent = React.createClass({
                       <label>Password</label>
                       <input type="password" name="password" className="form-control" ref="password"/>
                     </div>
-                    <button className="btn btn-warning btn-lg" onClick={this.handleSubmit}>Signup</button>
+                    <button className="btn btn-warning btn-lg" onClick={this.handleSubmit}>SignUp</button>
                   </form>
                   <hr />
                   <p>Already have an account? <a onClick={this.navigateToLogin}>Login</a></p>

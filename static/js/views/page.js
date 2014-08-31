@@ -14,6 +14,7 @@ collection.fetch();
 
 app.PageComponent = React.createClass({
   render : function() {
+    console.log(this);
     return (
       <div id="content">
         <div id="wrap">
