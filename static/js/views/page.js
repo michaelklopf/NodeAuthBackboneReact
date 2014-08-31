@@ -9,12 +9,17 @@ var ExampleComponent = app.ExampleComponent;
 var FooterComponent = app.FooterComponent;
 var HeaderComponent = app.HeaderComponent;
 
-var collection = new app.Examples();
-collection.fetch();
+var collection = {};
 
 app.PageComponent = React.createClass({
+  componentWillMount : function() {
+    collection = new app.Examples();
+    collection.fetch();
+  },
+  componentWillUnmount : function() {
+    collection.reset();
+  },
   render : function() {
-    console.log(this);
     return (
       <div id="content">
         <div id="wrap">
