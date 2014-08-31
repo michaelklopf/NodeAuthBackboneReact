@@ -16,8 +16,9 @@ var env         = require('node-env-file');
 env(__dirname + '/.env');
 
 // load config and create database
-var database    = require('./config/database');
-mongoose.connect(database.url);
+//var database    = require('./config/database');
+var database = process.env.MONGOHQ_URL;
+mongoose.connect(database);
 
 require('./config/passport.js')(passport);
 
