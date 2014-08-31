@@ -13,7 +13,7 @@ var methodOverride = require('method-override');
 var session     = require('express-session');
 var env         = require('node-env-file');
 
-env(__dirname + '/.env');
+//env(__dirname + '/.env');
 
 // load config and create database
 //var database    = require('./config/database');
