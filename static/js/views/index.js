@@ -13,10 +13,10 @@ app.IndexComponent = React.createClass({
   proceedWithLogin : function() {
     this.navigateToProfile();
   },
-  stopLogin : function() {
+  stopLogin : function(message) {
     this.refs.email.getDOMNode().value = '';
     this.refs.password.getDOMNode().value = '';
-    // TODO Show flash message
+    $("#loginAlert").html(message).show();
   },
   handleLogin : function() {
     var email = this.refs.email.getDOMNode().value.trim();
@@ -28,12 +28,11 @@ app.IndexComponent = React.createClass({
       type: 'POST',
       data: auth,
       success: function(data) {
-        if (data.status === true) {
+        if (data.success === true) {
           this.proceedWithLogin();
         } else {
-          if (data.status === false) {
-            console.log(data.message);
-            this.stopLogin();
+          if (data.success === false) {
+            this.stopLogin(data.message);
           } else {
             console.log("An error occured");
           }
@@ -53,6 +52,7 @@ app.IndexComponent = React.createClass({
           <div className="container">
             <div className="page-header">
               <h1 className="span fa fa-sign-in">Login</h1>
+              <div className="alert alert-danger" role="alert" id="loginAlert" hidden></div>
               <form>
                 <div className="form-group">
                   <label>Email</label>
@@ -65,7 +65,7 @@ app.IndexComponent = React.createClass({
                 <button type="submit" className="btn btn-warning btn-lg" onClick={this.handleLogin}>Login</button>
               </form>
               <hr />
-              <p>Need an account? <a onClick={this.navigateToSignUp}>SignUp</a></p>
+              <p>Need an account? <a onClick={this.navigateToSignUp}>Sign Up</a></p>
               <p>Or go <a onClick={this.navigateToHome}>home.</a></p>
             </div>
           </div>

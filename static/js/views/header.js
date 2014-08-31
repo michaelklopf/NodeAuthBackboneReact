@@ -37,7 +37,7 @@ app.HeaderComponent = React.createClass({
             <ul className="nav navbar-nav">
               <li><a onClick={this.navigateToHome}>Home</a></li>
               <li><a onClick={this.navigateToLogin}>Login</a></li>
-              <li><a onClick={this.navigateToSignUp}>SignUp</a></li>
+              <li><a onClick={this.navigateToSignUp}>Sign Up</a></li>
               <li><a onClick={this.navigateToProfile}>My Profile</a></li>
               <li><a onClick={this.handleLogout}>Logout</a></li>
             </ul>

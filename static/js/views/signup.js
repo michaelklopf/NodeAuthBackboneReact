@@ -13,10 +13,10 @@ app.SignupComponent = React.createClass({
   proceedWithSignUp : function() {
     this.navigateToProfile();
   },
-  stopSignUp : function() {
+  stopSignUp : function(message) {
     this.refs.email.getDOMNode().value = '';
     this.refs.password.getDOMNode().value = '';
-    // TODO Show flash message
+    $("#signupAlert").html(message).show();
   },
   handleSubmit : function() {
     var email = this.refs.email.getDOMNode().value.trim();
@@ -28,12 +28,11 @@ app.SignupComponent = React.createClass({
       type: 'POST',
       data: auth,
       success: function(data) {
-        if (data.status === true) {
+        if (data.success === true) {
           this.proceedWithSignUp();
         } else {
-          if (data.status === false) {
-            console.log(data.message);
-            this.stopSignUp();
+          if (data.success === false) {
+            this.stopSignUp(data.message);
           } else {
             console.log("An error occured");
           }
@@ -53,7 +52,8 @@ app.SignupComponent = React.createClass({
           <div className="container">
               <div className="page-header">
                 <div className="page-header">
-                  <h1 className="span fa fa-sign-in">Signup</h1>
+                  <h1 className="span fa fa-sign-in">Sign Up</h1>
+                  <div className="alert alert-danger" role="alert" id="signupAlert" hidden></div>
                   <form>
                     <div className="form-group">
                       <label>Email</label>
@@ -63,7 +63,7 @@ app.SignupComponent = React.createClass({
                       <label>Password</label>
                       <input type="password" name="password" className="form-control" ref="password"/>
                     </div>
-                    <button className="btn btn-warning btn-lg" onClick={this.handleSubmit}>SignUp</button>
+                    <button className="btn btn-warning btn-lg" onClick={this.handleSubmit}>Create Account</button>
                   </form>
                   <hr />
                   <p>Already have an account? <a onClick={this.navigateToLogin}>Login</a></p>
