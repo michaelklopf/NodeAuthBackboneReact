@@ -25,9 +25,9 @@ require('./config/passport.js')(passport);
 // create and configure express app
 var app = express();
 
-app.use(cookieParser('secretpassauth'));
+app.use(cookieParser(process.env.SECRETAUTH));
 app.use(bodyParser());
-app.use(session({ key: 'session', cookie: { maxAge: 6000000 }}));
+app.use(session({ secret: process.env.SESSIONKEY, cookie: { maxAge: 6000000 }}));
 app.use(methodOverride());
 
 app.use(stylus.middleware(__dirname + '/static'));
