@@ -1,4 +1,4 @@
-Node.js template to get cracking faster with a new project. This version is extending the efforts before with integration of passport for auth.
+Node.js template to get cracking faster with a new project. This version includes a redesign to a single page application backed by Backbone Model and Collection, and React.js for the views.  
 
 Overview
 ===
@@ -13,9 +13,6 @@ http://mongoosejs.com
 jade - template engine, easier and more convenient than writing html  
 http://jade-lang.com
 
-ejs - template engine, implemented it to test something, is not further maintained here  
-http://embeddedjs.com
-
 stylus - for dynamic and faster writing of CSS  
 http://learnboost.github.io/stylus/
 
@@ -25,17 +22,19 @@ http://bower.io
 Bootstrap - front-end framework for easier and faster web development. Comes with a lot of web site elements, already styled, like buttons or sliders. Responsiveness is an elemental feature  
 http://getbootstrap.com
 
-Backbone - front-end JavaScript framework. Helps to structure code in models and views. The latter includes the controller functionality of the MVC pattern.  
+Backbone - front-end JavaScript framework. Helps to structure code with the help of models. Also using the router.  
 http://backbonejs.org
 
-restler - Library to consume other web APIs. Not used here either.  
-https://github.com/danwrong/restler
+React - front-end JavaScript library. Uses JSX an XML derivate to structure the HTML.  
+http://facebook.github.io/react/
 
 passport - Authentification library.  
 http://passportjs.org/
 
 About Testing
 ===
+Still to do.
+
 Jasmine - Testing framework (not yet implemented) description here  
 http://blog.codeship.io/2013/08/20/testing-tuesday-19-how-to-test-node-js-applications-with-jasmine.html
 
@@ -62,9 +61,11 @@ http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
 
 Set-Up
 ===
-As with the starter template we set up node and load the necessary modules.
+As with the starter template we set up node and load the necessary modules.  
 
-For our data, we use MongoDB in this template. Other database types are possible too, but need to be configured differently, for this please look into the documentation. My bitstarter repository is based on PostgreSQL and you can take clues from there, but the setup is complexer, hence why I decided to use MongoDB here.
+We also use bower to install front-end libraries.  
+
+For our data, we use MongoDB in this template. Other database types are possible too, but need to be configured differently, for this please look into the documentation. My bitstarter repository is based on PostgreSQL and you can take clues from there, but the setup is complexer, hence why I decided to use MongoDB here.  
 
 Install MongoDB  
 ```brew install mongodb```
@@ -82,16 +83,14 @@ What happens here
 ===
 Instead of cluttering the web.js (also known as app.js or server.js), we separate the configuration for the start of the server from the routes and database configuration. That enables us to easier maintain the code. All back-end related code is saved in the app folder.
 
-The Backbone part works in similar ways. The code is divided between collections, models, and views. The entry point is called app.js, all the Backbone code is found in the js folder of the static (or public) content.
+The Backbone part works in similar ways. The code is divided between collections and models. React.js for the views. The entry point is called app.js, all the Backbone and React.js code is found in the js folder of the static (or public) content.
 
-In routes.js we created a REST API to operate on the database, which is called by our front-end code.
+In routes.js of the app folder we created a REST API to operate on the database, which is used by the front-end code.
+
+routes.js in the static folder is used by React as a mixin to call the paths via the Backbone router.
 
 examples.js is the name of the collection, which holds all the example.js objects. An example holds a name and a mail. These are saved in the database as is.
 
 To do
 ===
-The next step is to make use of MarionetteJS and discover more Backbone features.
-
-On the backend side, we need to structure the routes better, to prevent the routes.js from growing too large.
-
-I'm trying to add Jasmin for testing.
+Hide elements in the navbar. Secure routes of Backbone router.
