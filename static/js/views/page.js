@@ -18,6 +18,7 @@ app.PageComponent = React.createClass({
   },
   componentWillUnmount : function() {
     collection.reset();
+    //React.unmountComponentAtNode(document.getElementById("#container"));
   },
   render : function() {
     return (
